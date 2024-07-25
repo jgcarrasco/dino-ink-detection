@@ -122,7 +122,7 @@ def visualize_PCA(y_pca, cropped_tif, cropped_inklabels):
         plt.show()
 
     # Create an interactive slider
-    slider = widgets.IntSlider(value=33, min=0, max=y_pca.shape[0] - 1, step=1, description='Slice Index')
+    slider = widgets.IntSlider(value=36, min=0, max=y_pca.shape[0] - 1, step=1, description='Slice Index')
 
     # Use the interact function to create an interactive plot
     interact(plot_slices, slice_index=slider)
