@@ -1,6 +1,8 @@
 # Unsupervised Ink Detection with DINOv2
 
-This repository contains experiments related to unsupervised ink detection with DINO in an effort to implement an **ink detector that does not require and has not been trained with any labels**. It includes a [Colab Notebook]() that lets you easily load some crop of a segment and visualize the output. 
+This repository will contain experiments related to unsupervised ink detection with DINO in an effort to implement an **ink detector that does not require and has not been trained with any labels**. For now, it includes a Colab notebook<a target="_blank" href="https://colab.research.google.com/github/jgcarrasco/dino-ink-detection/blob/main/pca_dino.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>that lets you easily load some crop of a segment and visualize the output. 
 
 One of the problems with current supervised ink detection models is that they only work if we have ink labels, i.e. only on Scroll 1. The idea here is that, if we are able to obtain a somewhat decent detector that does not require labels, we could be able to find some letter/traces of ink in other scrolls and repeat the same ML/Human interaction loop that led to the Grand Prize results! 
 
@@ -20,12 +22,4 @@ Given these results, I decided to test if it works on scroll data. Similar to th
 
 
 The cool thing about this is that it **doesn't require labels at all and the model has not been trained without any sort of scroll data**! The not-so-cool thing is that it only works on really obvious examples, where we can visually see crackle. However, the PCA output is easier to visualize, and given this preliminary results, I think that they can be improved.
-
-## Scripts
-
-Below there is a brief description of every script in the repository. I specially recomment starting with the notebook as it does not require you to install anything on your computer, and even have GPU.
-
-- Notebook, simple visualization/cropping
-- Script, generate whole visualization. Right now it is extremely unefficient so work with small segments!
-- Dataset, etc.
 
