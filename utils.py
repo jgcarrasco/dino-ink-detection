@@ -4,7 +4,7 @@ import numpy as np
 
 import torch
 import torchvision.transforms as T
-from torch.cuda.amp import autocast
+from torch.amp import autocast
 
 from sklearn.decomposition import PCA
 
@@ -88,8 +88,11 @@ def prepare_tif(tif):
 def compute_PCA(tif, model, pca_depth, n_components=3):  
     tif_grayscale = prepare_tif(tif)
 
-    with autocast():
-        output = torch.cat([model.get_intermediate_layers(tif_slice[None, ...].cuda(), 1, reshape=True)[0].detach().cpu() for tif_slice in tif_grayscale])
+    if torch.cuda.is_available():
+        with autocast("cuda"):
+            output = torch.cat([model.get_intermediate_layers(tif_slice[None, ...].cuda(), 1, reshape=True)[0].detach().cpu() for tif_slice in tif_grayscale])
+    else:
+        output = torch.cat([model.get_intermediate_layers(tif_slice[None, ...], 1, reshape=True)[0].detach() for tif_slice in tif_grayscale])
 
     y = output.permute(0, 2, 3, 1)
 
